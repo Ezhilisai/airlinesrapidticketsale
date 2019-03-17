@@ -1,0 +1,43 @@
+<div class="searchArea">
+  <div class="b1">
+      <mat-grid-list class="full-width-container" cols="2" rowHeight="1:1">
+          <mat-form-field class="example-full-width">
+            <input type="text" matInput placeholder="Origin" aria-label="Origin" [formControl]="originFlightCtrl" [matAutocomplete]="autoOrigin">
+            <mat-autocomplete #autoOrigin="matAutocomplete">
+              <mat-option class="dropDownStyle" *ngFor="let flight of filterdOriginFlights | async" [value]="flight.name">
+                <i class="material-icons">flight</i>
+                <span>{{flight.iata_code}}</span>
+                <span>{{flight.name}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input type="text" matInput placeholder="Destination" aria-label="Destination" [formControl]="destinationFlightCtrl" [matAutocomplete]="autoDestination">
+            <mat-autocomplete #autoDestination="matAutocomplete">
+              <mat-option class="dropDownStyle" *ngFor="let flight of filterdDestinationFlights | async" [value]="flight.name">
+                  <i class="material-icons">flight</i>
+                  <span>{{flight.iata_code}}</span>
+                  <span>{{flight.name}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field> 
+      </mat-grid-list>
+  </div>
+  <div class="b1">
+      <mat-grid-list class="full-width-container" cols="2" rowHeight="1:1">
+        <mat-form-field>
+          <input matInput [matDatepicker]="departdate" placeholder="Departure date">
+          <mat-datepicker-toggle matSuffix [for]="departdate"></mat-datepicker-toggle>
+          <mat-datepicker #departdate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="returndate" placeholder="Return date">
+          <mat-datepicker-toggle matSuffix [for]="returndate"></mat-datepicker-toggle>
+          <mat-datepicker #returndate></mat-datepicker>
+        </mat-form-field>
+      </mat-grid-list>
+  </div>
+  <div class="b2">
+    <button mat-raised-button color="warn" routerLink="/checkout">Search</button>
+  </div>
+</div>

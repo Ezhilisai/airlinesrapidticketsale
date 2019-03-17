@@ -1,0 +1,50 @@
+<div class="header">
+<mat-toolbar color="primary">
+    <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div>
+        <a class="logo" routerLink="/">Fly Smart</a> <!-- routerLink="/home" -->
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end">
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items menu-li" fxHide.xs>
+            <li>
+                <a>My bookings</a>
+            </li>
+            <li>
+                <a>Check-in</a>
+            </li>
+            <li>
+                <a>Flight status</a>
+            </li>
+            <li>
+                <a>Support</a>
+            </li>
+        </ul>
+        <ul fxLayout class="navigation-items">
+            <li>
+                <button mat-button [matMenuTriggerFor]="langMenu">
+                    <mat-icon>language</mat-icon>En
+                </button>
+                <mat-menu #langMenu="matMenu">
+                    <button mat-menu-item>English</button>
+                    <button mat-menu-item>Bahasa Indonesia</button>
+                </mat-menu>
+            </li>
+            <li>
+                <button mat-button [matMenuTriggerFor]="moneyMenu">
+                    <mat-icon>attach_money</mat-icon>{{selectedCurreny}}
+                </button>
+                <mat-menu #moneyMenu="matMenu">
+                    <button mat-menu-item (click)="setCurrency('USD')">USD US Dollar</button>
+                    <button mat-menu-item (click)="setCurrency('INR')">INR India</button>
+                    <button mat-menu-item (click)="setCurrency('IDR')">IDR Bahasa Indonesia</button>
+                    <button mat-menu-item (click)="setCurrency('EUR')">EUR Euro</button>
+                </mat-menu>
+            </li>
+        </ul>
+    </div>
+  </mat-toolbar>
+</div>

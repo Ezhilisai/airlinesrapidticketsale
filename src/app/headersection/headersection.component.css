@@ -1,0 +1,27 @@
+.header {
+    height: 3rem;
+    background: white;
+}
+.header, .header * {
+    font-size: 1rem;
+}
+.logo,
+.logo:hover {
+    color: #000;
+    font-size: 1.5rem !important;
+    cursor: pointer;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.125);
+}
+.header ul.menu-li li{
+    padding: 0px 20px;
+}
+.header ul{
+    border-right: 1px solid rgba(0,0,0,0.2);
+    margin-right: 20px;
+}
+.header ul:last-child {
+    border: none;
+}
+.header button {
+    color: black;
+}

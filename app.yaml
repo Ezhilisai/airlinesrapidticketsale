@@ -1,0 +1,10 @@
+runtime: python27
+threadsafe: true
+handlers:
+
+- url: /
+  static_files: bookaflight/index.html
+  upload: bookaflight/index.html
+
+- url: /
+  static_dir: bookaflight
