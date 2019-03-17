@@ -1,6 +1,6 @@
-# Bookaflight
+# FlySmart
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3. and upgraded to 7.3.5 up-to-date.
 
 ## Development server
 
