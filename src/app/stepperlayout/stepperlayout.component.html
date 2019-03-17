@@ -1,0 +1,88 @@
+<mat-horizontal-stepper linear labelPosition="bottom" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+      <div class="full-width">
+        <h2>Choose a Flight</h2>
+      </div>
+      <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Check Flights On Sale</ng-template>
+          <table mat-table [dataSource]="flightdetails" class="mat-elevation-z8">
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+            <!-- Column -->
+            <ng-container *ngFor="let column of flightdetailsAllColumns" matColumnDef="{{column.code}}">
+              <ng-container *ngIf="showHeader">
+                <th mat-header-cell *matHeaderCellDef> {{column.name}} </th>
+              </ng-container>
+              <ng-container *ngIf="column.code !== 'book' && column.code !== 'oFare' && column.code !== 'rFare'">
+                <td mat-cell *matCellDef="let element"> {{element[column.code]}} </td>
+              </ng-container>
+              <ng-container *ngIf="column.code === 'oFare'">
+                <td mat-cell *matCellDef="let element" class="currencyOldStyle"> <s>{{element[column.code] | currency:'USD':true:'1.2-2'}}</s></td>
+              </ng-container>
+              <ng-container *ngIf="column.code === 'rFare'">
+                <td mat-cell *matCellDef="let element" [ngClass]="{'currencyStyle': true, 'updatedPrice': element.priceUpdate}"> 
+                  <div>{{element[column.code] | currency:'USD':true:'1.2-2'}}</div>
+                </td>
+              </ng-container>
+              
+              <ng-container *ngIf="column.code === 'book'">
+                <td mat-cell *matCellDef="let element">
+                  <button mat-stroked-button matStepperNext color="primary">{{column.name}}</button>
+                </td>
+              </ng-container>
+            </ng-container>
+            
+            <ng-container *ngIf="showHeader">
+              <tr mat-header-row *matHeaderRowDef="flightdetailsShowColumns"></tr>
+            </ng-container>
+            <tr mat-row *matRowDef="let row; columns: flightdetailsShowColumns;"></tr>
+          </table>
+      </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+      <div class="full-width">
+        <h2>Enter Passenger Information</h2>
+      </div>
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Enter Passenger Detail</ng-template>
+        <div fxFlex fxLayout="column" fxLayoutAlign="end" fxLayoutGap="20px">
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field class="full-width">
+                <input matInput required placeholder="Airlines Program Code Ex:(CM, AI)" value="">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput required placeholder="Frequent Flyer Number" value="">
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field class="full-width">
+                <input matInput required placeholder="First Name" value="">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput required placeholder="Last Name" value="">
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field class="full-width">
+                <input matInput [matDatepicker]="dateofbirth" placeholder="Date of birth">
+                <mat-datepicker-toggle matSuffix [for]="dateofbirth"></mat-datepicker-toggle>
+                <mat-datepicker #dateofbirth></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput required placeholder="Email" value="" [formControl]="emailValidation">
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between end">
+            <button mat-stroked-button matStepperPrevious color="primary">Back</button> 
+            <button mat-stroked-button matStepperNext color="primary">Next</button> 
+          </div>
+        </div>
+      </form>
+  </mat-step>
+  <mat-step>
+      <div class="full-width">
+        <h2>Please verify and confirm your booking here.</h2>
+      </div>
+      <ng-template matStepLabel>Finalize Booking</ng-template>
+  </mat-step>
+</mat-horizontal-stepper>
